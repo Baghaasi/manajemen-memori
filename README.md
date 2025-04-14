@@ -6,7 +6,7 @@ Kode ini ditulis untuk arsitektur x86-64 dan menggunakan sistem panggilan Linux 
 
 # Struktur Kode
 
-1.  Section Declaration:
+## 1.  Section Declaration:
 
   section .text
 
@@ -15,13 +15,17 @@ Kode ini ditulis untuk arsitektur x86-64 dan menggunakan sistem panggilan Linux 
       section .text: Menandakan bahwa bagian ini berisi kode eksekusi (kode program).
       global _start: Menandakan bahwa label _start dapat diakses dari luar, dan ini adalah titik masuk program.
 
-2.  Memulai Program:
+
+
+## 2.  Memulai Program:
 
   _start:
 
       Label _start adalah titik awal eksekusi program.
   
-3.  Alokasi Memori Menggunakan mmap:
+
+
+## 3.  Alokasi Memori Menggunakan mmap:
 
    mov rax, 9          ; sys_mmap
   
@@ -47,7 +51,9 @@ Kode ini ditulis untuk arsitektur x86-64 dan menggunakan sistem panggilan Linux 
   *     syscall: Memanggil kernel untuk mengeksekusi sistem panggilan mmap.
 
 
-4.   Pemeriksaan Kesalahan Alokasi:
+
+
+## 4.   Pemeriksaan Kesalahan Alokasi:
 
    cmp rax, -1
 
@@ -57,7 +63,9 @@ je exit             ; keluar jika terjadi kesalahan
  *     je exit: Jika hasil perbandingan sama (artinya alokasi gagal), lompat ke label exit.
 
 
-5.  Inisialisasi Memori yang Dialokasikan:
+
+
+## 5.  Inisialisasi Memori yang Dialokasikan:
 
    mov rdi, rax        ; rdi = alamat yang baru dialokasikan
 
@@ -72,7 +80,9 @@ rep stosd           ; isi memori yang dialokasikan dengan nol
 *     xor rax, rax: Mengatur rax menjadi 0, yang akan digunakan untuk mengisi memori.
 *     rep stosd: Mengisi memori yang dialokasikan dengan nilai 0. rep mengulangi instruksi stosd sebanyak rcx kali.
 
-6.   Menulis Pesan ke Standard Output:
+
+
+## 6.   Menulis Pesan ke Standard Output:
 
   mov rax, 1          ; sys_write
 
